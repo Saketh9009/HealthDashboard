@@ -1,0 +1,617 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.3s ease-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 1rem;
+  }
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.month-header h3 {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.navigation-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.navigation-button:hover {
+  background-color: var(--border-color);
+}
+
+.navigation-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    gap: 0.25rem;
+  }
+}
+
+.day-header {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .day-header {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+  }
+}
+
+.day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  background-color: transparent;
+  color: var(--text-primary);
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.day-cell.empty {
+  background-color: transparent;
+  cursor: default;
+}
+
+.day-cell.has-appointment {
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.day-cell.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.day-cell:hover:not(.empty) {
+  background-color: var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .day-cell {
+    font-size: 0.75rem;
+  }
+}
+
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.appointments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.appointments-list::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 3px;
+}
+
+.appointments-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.appointment-card {
+  background-color: #44419e;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.appointment-card:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.appointment-card .time {
+  font-size: 0.875rem;
+  color: #e0e1e8;
+  margin-bottom: 0.25rem;
+}
+
+.appointment-card .title {
+  font-weight: 500;
+  color: #e0e1e8;
+}
+
+@media (max-width: 768px) {
+  .appointment-card {
+    padding: 0.75rem;
+  }
+}
+
+.week-calendar-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  /* 1st col for time, then 7 days */
+  grid-auto-rows: 48px;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  align-items: stretch;
+}
+
+.time-col-header {
+  /* Empty top-left cell */
+}
+
+.day-header {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem 0 0.2rem 0;
+  background: none;
+  border-bottom: 1.5px solid var(--border-color);
+}
+
+.time-slot-label {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  border-right: 1.5px solid var(--border-color);
+  background: none;
+}
+
+.week-cell {
+  background: transparent;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  cursor: default;
+  transition: background 0.2s, color 0.2s;
+  min-height: 44px;
+  min-width: 60px;
+  border: 1.5px solid transparent;
+}
+
+.week-cell.has-appointment {
+  background: #e6eaff;
+  color: #44419e;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #bfc6f7;
+  box-shadow: 0 2px 8px 0 rgba(60, 120, 255, 0.06);
+}
+
+.week-cell.selected,
+.week-cell.has-appointment.selected {
+  background: #44419e;
+  color: #fff;
+  border: 1.5px solid #44419e;
+  box-shadow: 0 4px 16px 0 rgba(60, 120, 255, 0.12);
+}
+
+.week-cell.has-appointment:hover {
+  background: #bfc6f7;
+  color: #222;
+}
+
+.selected-detail {
+  background: #44419e;
+  color: white;
+  border: 1.5px solid #bfc6f7;
+  margin-top: 0.5rem;
+      width: 97%;
+
+}
+
+.selected-detail .time {
+  color: #44419e;
+  font-weight: 600;
+}
+
+.selected-detail .title {
+  color: white;
+  font-weight: 500;
+}
+
+.pill-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pill-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.18rem;
+  min-height: 28px;
+  width: 100%;
+  min-width: 800px;
+}
+
+.pill-header {
+  margin-bottom: 0.1rem;
+  width: 100%;
+  min-width: 800px;
+}
+
+.pill-time-col {
+  width: 44px;
+  min-width: 44px;
+  text-align: right;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding-right: 0.2rem;
+}
+
+.pill-day-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pill-day-label {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.pill-date-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.pill-slot {
+  flex: 1;
+  min-width: 0;
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #f3f6fd;
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin: 1px 0;
+  padding: 0 2px;
+  border: 1.2px solid transparent;
+  box-shadow: none;
+  position: relative;
+  overflow: visible;
+}
+
+.pill-slot.selected {
+  background: #44419e;
+  color: #fff;
+  border: 2px solid #44419e;
+  box-shadow: 0 0 0 2px #bfc6f7, 0 2px 8px 0 rgba(60, 120, 255, 0.10);
+  z-index: 2;
+  animation: glow 0.5s;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 0 0 #bfc6f7; }
+  100% { box-shadow: 0 0 0 2px #bfc6f7; }
+}
+
+.pill-slot.has-appointment {
+  background: var(--apt-color, #e6eaff);
+  color: #44419e;
+  font-weight: 600;
+  border: 1.2px solid #bfc6f7;
+  box-shadow: 0 2px 8px 0 rgba(60, 120, 255, 0.06);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.pill-slot.has-appointment.selected {
+  background: var(--apt-color, #44419e);
+  color: #fff;
+  border: 2px solid var(--apt-color, #44419e);
+  box-shadow: 0 0 0 4px #bfc6f7, 0 4px 16px 0 rgba(60, 120, 255, 0.12);
+}
+
+.pill-slot.has-appointment:hover {
+  background: #bfc6f7;
+  color: #222;
+}
+
+.pill-slot.past {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+.pill-dot {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(60,120,255,0.10);
+  border: 1.5px solid #fff;
+}
+
+.pill-apt-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  width: 100%;
+  padding: 0.08rem 0.3rem;
+  border-radius: 10px;
+  background: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pill-apt-emoji {
+  font-size: 0.95rem;
+  margin-right: 0.15rem;
+}
+.pill-apt-title {
+  font-weight: 600;
+  font-size: 0.83rem;
+  margin-right: 0.15rem;
+}
+.pill-apt-time {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+}
+.pill-apt-doctor {
+  font-size: 0.73rem;
+  color: #888;
+  font-weight: 400;
+}
+
+.today-button {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: #e6eaff;
+  color: #44419e;
+  font-weight: 600;
+  border: none;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px 0 rgba(60, 120, 255, 0.06);
+  transition: background 0.2s, color 0.2s;
+}
+.today-button:hover {
+  background: #44419e;
+  color: #fff;
+}
+
+.pill-day-col.today .pill-day-label,
+.pill-day-col.today .pill-date-label {
+  color: #3a86ff;
+  font-weight: 700;
+}
+
+.today-dot {
+  width: 8px;
+  height: 8px;
+  background: #3a86ff;
+  border-radius: 50%;
+  margin: 2px auto 0 auto;
+}
+
+.pill-apt-mark {
+  width: 32px;
+  height: 18px;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 1px 4px rgba(60,120,255,0.10);
+  /* transition: background 0.2s, box-shadow 0.2s; */
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .section {
+    padding: 0.9rem;
+  }
+
+  .pill-calendar {
+    padding-bottom: 1rem;
+  }
+
+  .pill-row {
+    min-width: 800px;
+  }
+
+  .appointments-list {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 0.75rem;
+  }
+
+  .month-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .month-header h3 {
+    font-size: 0.9rem;
+  }
+
+  .navigation-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .today-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .pill-day-label {
+    font-size: 0.75rem;
+  }
+
+  .pill-date-label {
+    font-size: 0.85rem;
+  }
+
+  .pill-time-col {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+  }
+
+  .pill-slot {
+    min-height: 35px;
+  }
+
+  .appointment-card {
+    padding: 0.75rem;
+  }
+
+  .appointment-card .time {
+    font-size: 0.8rem;
+  }
+
+  .appointment-card .title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .month-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .pill-calendar {
+    width: 100%;
+  }
+
+  .pill-row {
+    min-width: 800px;
+  }
+
+  .pill-time-col {
+    width: 44px;
+    min-width: 44px;
+    font-size: 0.75rem;
+  }
+
+  .pill-day-col {
+    flex: 1;
+  }
+
+  .pill-day-label {
+    font-size: 0.75rem;
+  }
+
+  .pill-date-label {
+    font-size: 0.75rem;
+  }
+
+  .pill-slot {
+    min-height: 40px;
+    margin: 0.25rem 0;
+  }
+
+  .appointments-list {
+    max-height: 200px;
+    width: 100%;
+  }
+
+  .selected-detail {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .pill-apt-mark {
+    width: 24px;
+    height: 16px;
+  }
+} 

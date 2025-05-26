@@ -1,0 +1,145 @@
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem 4rem;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    width: 100%;
+    box-sizing: border-box;
+} 
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.dashboard-left-column,
+.dashboard-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+}
+
+.anatomy-section-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border-radius: 30px;
+    height: 577px;
+    width: 100%;
+}
+
+/* Calendar section specific styles */
+.calendar-section {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .main-content {
+        padding: 1.5rem 2rem;
+    }
+
+    .dashboard-grid {
+        gap: 2rem;
+    }
+
+    .dashboard-left-column,
+    .dashboard-right-column {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .anatomy-section-container {
+        height: 500px;
+    }
+
+    .dashboard-grid {
+        gap: 1.5rem;
+    }
+
+    .dashboard-left-column,
+    .dashboard-right-column {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .dashboard-left-column,
+    .dashboard-right-column {
+        gap: 1.5rem;
+    }
+
+    .anatomy-section-container {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+    }
+
+    /* Reorder components for mobile */
+    .health-status-section {
+        order: 1;
+    }
+
+    .anatomy-section {
+        order: 2;
+    }
+
+    .activity-section {
+        order: 3;
+    }
+
+    .calendar-section {
+        order: 4;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .schedule-section {
+        order: 5;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0.5rem;
+    }
+
+    .dashboard-grid {
+        gap: 1rem;
+    }
+
+    .dashboard-left-column,
+    .dashboard-right-column {
+        gap: 1rem;
+    }
+
+    .anatomy-section-container {
+        gap: 0.75rem;
+    }
+
+    .calendar-section {
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+    }
+}

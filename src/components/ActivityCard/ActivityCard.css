@@ -1,0 +1,67 @@
+.card-activity {
+  background-color: var(--background-color);
+  border-radius: 2.2rem;
+  box-shadow: 0 8px 32px 0 rgba(60, 120, 255, 0.07);
+  padding: 2.2rem 2.5rem;
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #2B3674;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.chart-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2.2rem;
+  height: 90px;
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.32rem;
+}
+
+.bar {
+  width: 6px;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.3s;
+}
+
+.days-row {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  margin-top: 0.2rem;
+}
+
+.day-label {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  width: 32px;
+  text-align: center;
+} 

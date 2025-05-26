@@ -1,0 +1,93 @@
+export const appointments = {
+  upcoming: [
+    {
+      id: 1,
+      day: 'Thursday',
+      appointments: [
+        {
+          id: 1,
+          title: 'Health checkup',
+          time: '11:00',
+          endTime: '12:00',
+          doctor: 'Dr. Cameron Williamson',
+          emoji: '🦷',
+          type: 'checkup',
+        },
+        {
+          id: 2,
+          title: 'Ophthalmologist',
+          time: '14:00',
+          endTime: '15:00',
+          doctor: '',
+          emoji: '👁️',
+          type: 'ophthalmology',
+        },
+      ],
+    },
+    {
+      id: 2,
+      day: 'Saturday',
+      appointments: [
+        {
+          id: 3,
+          title: 'Cardiologist',
+          time: '12:00',
+          endTime: '13:00',
+          doctor: '',
+          emoji: '❤️',
+          type: 'cardiology',
+        },
+        {
+          id: 4,
+          title: 'Neurologist',
+          time: '16:00',
+          endTime: '17:00',
+          doctor: '',
+          emoji: '👨‍⚕️',
+          type: 'neurology',
+        },
+      ],
+    },
+  ],
+  calendar: {
+    month: 'October',
+    appointments: [
+      {
+        date: 26,
+        time: '09:00',
+        endTime: '11:00',
+        title: 'Dentist',
+        doctor: 'Dr. Cameron Williamson',
+        emoji: '🦷',
+        description: 'Dentist appointment',
+      },
+      {
+        date: 28,
+        time: '11:00',
+        endTime: '12:00',
+        title: 'Physiotherapy Appointment',
+        doctor: 'Dr. Kevin Djones',
+        emoji: '💪',
+        description: 'Physiotherapy session',
+      },
+      {
+        date: 30,
+        time: '12:00',
+        endTime: '13:00',
+        title: 'Cardiologist',
+        doctor: '',
+        emoji: '❤️',
+        description: 'Cardiology checkup',
+      },
+      {
+        date: 31,
+        time: '09:00',
+        endTime: '10:00',
+        title: 'Dentist',
+        doctor: 'Dr. Cameron Williamson',
+        emoji: '🦷',
+        description: 'Dentist appointment',
+      },
+    ],
+  },
+}; 
